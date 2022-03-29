@@ -1,0 +1,46 @@
+
+
+logging:
+  config: classpath:logback-spring.xml
+
+# access.log日志配置
+server:
+  tomcat:
+    accesslog:
+      pattern: '%{X-Forwarded-For}i %h %l %u %t %D "%r" %s %b'
+      enabled: on
+      directory: ${user.dir}/user_controller/logs
+      prefix: access.${HOST:127.0.0.1}.${server.port:8080}
+
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    lettuce:
+      pool:
+        min-idle: 1
+        max-wait: -1
+        max-active: 1000
+        max-idle: 300
+    port: 6379
+  # 多环境配置文件激活属性
+  profiles:
+    active: dev
+  mvc:
+    ##告诉SpringBoot当出现404错误时,直接抛出异常.
+    throw-exception-if-no-handler-found: on
+  resources:
+    ##   告诉SpringBoot不要为我们工程中的资源文件建立映射
+    add-mappings: false
+  aop:
+    ## 使用基于类的动态代理（cglib）,JDK动态代理智能基于接口
+    proxy-target-class: on
+  # 文件大小
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 10MB
+  application:
+    name: rainMall-user
+

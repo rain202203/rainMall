@@ -6,7 +6,54 @@
 
     <groupId>com.rain.mall</groupId>
     <artifactId>rainMall</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>user_service</module>
+        <module>user_db</module>
+        <module>user_controller</module>
+        <module>common_service</module>
+        <module>common_controller</module>
+    </modules>
+
+
+    <!-- 父依赖 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.7.RELEASE</version> <!-- 注意版本 -->
+    </parent>
+
+    <!-- 一些参数 -->
+    <properties>
+        <skipTest>true</skipTest>
+    </properties>
+
+    <!-- 依赖 -->
+    <dependencies>
+        <!--测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- 依赖 - 固定版本 -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- springCloud 依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>

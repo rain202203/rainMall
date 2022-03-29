@@ -1,0 +1,26 @@
+spring:
+
+  # 将每个模块的个性化配置引入
+  profiles:
+    include: rain-dev
+
+#  # redis配置
+#  redis:
+#    host: 10.5.36.2
+#    database: 0
+
+# mysql数据库配置
+local:
+  jdbc:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zy?characterEncoding=utf-8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    pool:
+      initialSize: 50
+      minIdle: 50
+      maxActive: 100
+  mybatis:
+    typeAliasesPackage: com.rain.mall.*.domain
+    mapperLocations: classpath:mapper/db_local/*/*.xml
+
